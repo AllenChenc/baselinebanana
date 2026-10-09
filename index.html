@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Baseline Banana | Scientific Software & Data Analysis</title>
+
+<meta name="description"
+content="Baseline Banana develops scientific software and data-analysis tools for spectroscopy, research, and scientific computing.">
+
+<style>
+
+/* ---------- RESET ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  color: #111;
+  background: #fffef9;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
+/* ---------- NAV ---------- */
+
+nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 30px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 850;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: #d6a300;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: #d6a300;
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 65px 30px 95px;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* yellow spectroscopy background */
+
+.hero::after {
+  content: "";
+  position: absolute;
+
+  width: 850px;
+  height: 300px;
+
+  right: -120px;
+  bottom: 20px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 220, 80, .28),
+      rgba(255, 235, 150, .12) 50%,
+      transparent 72%
+    );
+
+  transform: rotate(-8deg);
+}
+
+
+/* ---------- HERO TEXT ---------- */
+
+.badge {
+  display: inline-block;
+
+  background: #fff0ad;
+
+  color: #111;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  padding: 8px 15px;
+
+  border-radius: 100px;
+
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(55px, 6vw, 82px);
+
+  line-height: .96;
+
+  letter-spacing: -4px;
+
+  margin-bottom: 27px;
+}
+
+h1 span {
+  color: #d9a500;
+}
+
+.hero-text p {
+  max-width: 620px;
+
+  font-size: 20px;
+
+  color: #444;
+
+  margin-bottom: 32px;
+}
+
+.button {
+  display: inline-block;
+
+  padding: 15px 25px;
+
+  background: #101722;
+
+  color: white;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: .2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  background: #252d39;
+}
+
+
+/* ---------- BANANA ---------- */
+
+.banana-area {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.banana {
+  width: min(360px, 90%);
+
+  position: relative;
+
+  z-index: 3;
+
+  filter: drop-shadow(0 25px 15px rgba(0,0,0,.16));
+
+  animation: bananaDance 2.2s ease-in-out infinite;
+}
+
+@keyframes bananaDance {
+
+  0% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  25% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  75% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+
+
+/* ---------- MUSIC NOTES ---------- */
+
+.note {
+  position: absolute;
+
+  color: #e2ad00;
+
+  font-size: 40px;
+
+  font-weight: bold;
+
+  animation: music 2.5s ease-in-out infinite;
+}
+
+.note1 {
+  left: 5%;
+  top: 25%;
+}
+
+.note2 {
+  right: 7%;
+  top: 12%;
+
+  animation-delay: .8s;
+}
+
+@keyframes music {
+
+  0%,100% {
+    transform: translateY(0) rotate(-10deg);
+    opacity: .7;
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(8deg);
+    opacity: 1;
+  }
+}
+
+
+/* ---------- SPECTRUM ---------- */
+
+.spectrum {
+  position: absolute;
+
+  width: 115%;
+
+  bottom: 20px;
+
+  left: -10%;
+
+  z-index: 1;
+
+  opacity: .8;
+}
+
+.spectrum path {
+  fill: none;
+
+  stroke: #d7a000;
+
+  stroke-width: 2.5;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  stroke-dasharray: 2000;
+
+  stroke-dashoffset: 2000;
+
+  animation: drawSpectrum 3s ease forwards;
+}
+
+@keyframes drawSpectrum {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* ---------- SECTIONS ---------- */
+
+section.content {
+  padding: 85px 0;
+}
+
+.section-label {
+  color: #cf9b00;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  font-size: 13px;
+
+  font-weight: 850;
+
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 43px;
+
+  letter-spacing: -2px;
+
+  margin-bottom: 35px;
+}
+
+
+/* ---------- SERVICES ---------- */
+
+.services {
+  background: white;
+}
+
+.service-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #e7e7e7;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  min-height: 235px;
+
+  position: relative;
+
+  background: #fff;
+
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 15px 35px rgba(0,0,0,.07);
+}
+
+.icon {
+  width: 50px;
+
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff0b0;
+
+  font-size: 23px;
+
+  margin-bottom: 25px;
+}
+
+.number {
+  position: absolute;
+
+  right: 25px;
+
+  top: 25px;
+
+  color: #aaa;
+
+  font-size: 13px;
+}
+
+.card h3 {
+  font-size: 21px;
+
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+
+  font-size: 15px;
+}
+
+
+/* ---------- PROJECT ---------- */
+
+.project-section {
+  padding: 20px 30px 95px;
+
+  background: white;
+}
+
+.project {
+  max-width: 1200px;
+
+  margin: auto;
+
+  background:
+    radial-gradient(circle at 80% 50%, #2b2b2b, #151515 60%);
+
+  border-radius: 18px;
+
+  padding: 48px;
+
+  color: white;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.project::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+
+  height: 200px;
+
+  right: -50px;
+
+  bottom: -80px;
+
+  border-radius: 50%;
+
+  border-top: 2px solid rgba(220,170,0,.35);
+
+  transform: rotate(12deg);
+}
+
+.project .section-label {
+  color: #ffd84d;
+}
+
+.project h2 {
+  margin-bottom: 20px;
+}
+
+.project-row {
+  display: flex;
+
+  gap: 25px;
+
+  align-items: flex-start;
+}
+
+.status {
+  background: #f4c531;
+
+  color: #111;
+
+  border-radius: 100px;
+
+  padding: 7px 14px;
+
+  font-size: 12px;
+
+  font-weight: 850;
+
+  white-space: nowrap;
+}
+
+.project-info h3 {
+  font-size: 25px;
+
+  margin-bottom: 8px;
+}
+
+.project-info p {
+  max-width: 750px;
+
+  color: #ccc;
+
+  font-size: 16px;
+}
+
+
+/* ---------- ABOUT ---------- */
+
+.about-text {
+  max-width: 850px;
+
+  font-size: 23px;
+
+  color: #333;
+
+  line-height: 1.6;
+}
+
+
+/* ---------- CONTACT ---------- */
+
+.contact {
+  background: #fff7d7;
+
+  text-align: center;
+}
+
+.contact h2 {
+  margin-bottom: 15px;
+}
+
+.contact p {
+  color: #555;
+
+  font-size: 18px;
+
+  margin-bottom: 28px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  padding: 32px;
+
+  border-top: 1px solid #eee;
+
+  font-size: 13px;
+
+  color: #777;
+}
+
+.footer-inner {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: flex;
+
+  justify-content: space-between;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 850px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+
+    padding-top: 45px;
+  }
+
+  h1 {
+    letter-spacing: -2.5px;
+  }
+
+  .banana-area {
+    min-height: 350px;
+  }
+
+  .banana {
+    width: 280px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project {
+    padding: 32px 25px;
+  }
+
+  .project-row {
+    flex-direction: column;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+  <div class="logo">
+    Baseline <span>Banana</span>
+  </div>
+
+  <div class="nav-links">
+
+    <a href="#services">What We Do</a>
+
+    <a href="#projects">Projects</a>
+
+    <a href="#about">About</a>
+
+    <a href="#contact">Contact</a>
+
+  </div>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+<div class="hero-inner">
+
+
+<div class="hero-text">
+
+  <div class="badge">
+    SCIENCE × SOFTWARE × DATA
+  </div>
+
+  <h1>
+    Better tools for<br>
+    <span>better science.</span>
+  </h1>
+
+  <p>
+    Baseline Banana develops scientific software and
+    data-analysis solutions for spectroscopy, research,
+    and scientific computing.
+  </p>
+
+  <a href="#services" class="button">
+    Explore what we do →
+  </a>
+
+</div>
+
+
+
+<div class="banana-area">
+
+  <div class="note note1">♪</div>
+
+  <div class="note note2">♫</div>
+
+
+  <!-- Banana mascot -->
+
+  <img
+    class="banana"
+    src="banana.png"
+    alt="Baseline Banana mascot">
+
+
+  <!-- spectroscopy line -->
+
+  <svg class="spectrum"
+       viewBox="0 0 700 220"
+       preserveAspectRatio="none">
+
+    <path d="
+    M0 190
+    L80 188
+    L130 185
+    L170 180
+    L190 170
+    L200 130
+    L210 175
+    L240 165
+    L250 90
+    L260 170
+    L285 160
+    L300 45
+    L315 160
+    L350 168
+    L375 145
+    L390 90
+    L405 160
+    L450 170
+    L500 175
+    L535 165
+    L550 75
+    L565 170
+    L610 178
+    L700 185">
+    </path>
+
+  </svg>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- SERVICES -->
+
+<section class="content services" id="services">
+
+<div class="container">
+
+  <div class="section-label">
+    What We Do
+  </div>
+
+  <h2>
+    Built for scientific work.
+  </h2>
+
+
+  <div class="service-grid">
+
+
+    <div class="card">
+
+      <div class="number">01</div>
+
+      <div class="icon">⌨</div>
+
+      <h3>
+        Scientific Software
+      </h3>
+
+      <p>
+        Practical software for scientific workflows,
+        data processing, automation, visualization,
+        and quantitative analysis.
+      </p>
+
+    </div>
+
+
+
+    <div class="card">
+
+      <div class="number">02</div>
+
+      <div class="icon">▥</div>
+
+      <h3>
+        Spectroscopy & Data
+      </h3>
+
+      <p>
+        Tools and workflows for spectral processing,
+        baseline correction, peak analysis, fitting,
+        visualization, and interpretation.
+      </p>
+
+    </div>
+
+
+
+    <div class="card">
+
+      <div class="number">03</div>
+
+      <div class="icon">⚙</div>
+
+      <h3>
+        Technical Consulting
+      </h3>
+
+      <p>
+        Scientific and technical problem solving at
+        the intersection of chemistry, spectroscopy,
+        software, and data.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- PROJECT -->
+
+<section class="project-section" id="projects">
+
+<div class="project">
+
+  <div class="section-label">
+    Projects
+  </div>
+
+  <h2>
+    What we're building.
+  </h2>
+
+
+  <div class="project-row">
+
+    <div class="status">
+      IN DEVELOPMENT
+    </div>
+
+
+    <div class="project-info">
+
+      <h3>
+        Baseline Banana Scientific Data Toolkit
+      </h3>
+
+      <p>
+        An evolving collection of tools for processing,
+        visualizing, fitting, and analyzing spectroscopy
+        and scientific datasets — designed to make
+        repetitive scientific workflows faster, clearer,
+        and more reproducible.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+
+<section class="content" id="about">
+
+<div class="container">
+
+  <div class="section-label">
+    About
+  </div>
+
+  <h2>
+    Science shouldn't fight its tools.
+  </h2>
+
+  <p class="about-text">
+    Baseline Banana is a scientific software and technology
+    company focused on building practical computational tools
+    for researchers. We combine scientific domain knowledge
+    with modern software and data-analysis methods to turn
+    complex experimental data into useful answers.
+  </p>
+
+</div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section class="content contact" id="contact">
+
+<div class="container">
+
+  <div class="section-label">
+    Contact
+  </div>
+
+  <h2>
+    Let's build something useful.
+  </h2>
+
+  <p>
+    Scientific software, data analysis,
+    or technical collaboration.
+  </p>
+
+  <a
+    href="mailto:contact@baselinebanana.com"
+    class="button">
+
+    contact@baselinebanana.com
+
+  </a>
+
+</div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-inner">
+
+  <div>
+    © 2026 Baseline Banana. All rights reserved.
+  </div>
+
+  <div>
+    Scientific Software · Data Analysis · Technical Consulting
+  </div>
+
+</div>
+
+</footer>
+
+
+</body>
+</html>
